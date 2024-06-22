@@ -15,7 +15,8 @@ const mongoose = require('mongoose');
 var port = normalizePort(process.env.PORT || '3000');
 app.set('port', port);
 
-mongoose.connect('mongodb://127.0.0.1:27017/car_mela_project')
+// mongoose.connect('mongodb://127.0.0.1:27017/car_mela_project')
+mongoose.connect('mongodb+srv://druvzanzmera:mEKi8NjrM6GB19fg@car-mela-project.qlrkfhv.mongodb.net/?retryWrites=true&w=majority&appName=car-mela-project')
   .then(() => console.log('Connected!'));
 
   /**
@@ -91,3 +92,9 @@ function onListening() {
     : 'port ' + addr.port;
   debug('Listening on ' + bind);
 }
+
+
+// Mongodb Atlas
+// druvzanzmera
+// mEKi8NjrM6GB19fg
+// 49.34.249.6 
