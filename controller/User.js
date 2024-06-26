@@ -39,11 +39,35 @@ const transporter = nodemailer.createTransport({
   
         // Send OTP email
         const mailOptions = {
-          from: "codewithdhruv715@gmail.com",
+          from: 'codewithdhruv715@gmail.com',
           to: email,
-          subject: 'Your OTP Code',
-          text: `Your OTP code is ${otp}. It will expire in 15 minutes.`
-        };
+          subject: 'CarHub: Your OTP Code for Registration',
+          html: `
+              <div style="font-family: Arial, sans-serif; max-width: 600px; margin: auto; padding: 20px; border-radius: 10px; background-color: #000000; color: #ffffff;">
+             
+                <h1 style="background-color: #4CAF50; color: white; text-align: center; padding: 10px 0; border-radius: 10px 10px 0 0;">CarHub</h1>
+                <h2 style="background-color: #4CAF50; color: white; text-align: center; padding: 10px 0; border-radius: 10px 10px 0 0;">Your OTP</h2>
+                <p style="font-size: 16px; color: #cccccc;">
+                  Dear User,
+                  <br/><br/>
+                  Thank you for registering with CarHub. To complete your registration, please use the following One Time Password (OTP):
+                </p>
+                <div style="text-align: center; margin: 20px 0;">
+                  <strong style="font-size: 24px; color: #4CAF50;">${otp}</strong>
+                </div>
+                <p style="font-size: 16px; color: #cccccc;">
+                  This OTP is valid for 15 minutes. For security reasons, please do not share this OTP with anyone.
+                  <br/><br/>
+                  Welcome aboard!
+                  <br/><br/>
+                  Regards,
+                  <br/>
+                  The CarHub Team
+                </p>
+              </div>
+          `
+      };
+      
   
         await transporter.sendMail(mailOptions);
   
