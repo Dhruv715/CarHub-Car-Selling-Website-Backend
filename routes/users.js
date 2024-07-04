@@ -52,6 +52,6 @@ router.post('/Inquiry',addInquiry);
 router.post('/TestDrive',createTestDrive);
 
 // Change Pwd
-routet.post('/ChangePwd',ChangePwdUser);
+router.post('/ChangePwd',ChangePwdUser);
 
 module.exports = router;
