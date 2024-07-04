@@ -5,6 +5,7 @@ var router = express.Router();
 var multer = require('multer');
 const { fetchAllApprovedCarsByUsers } = require('../controller/User');
 const { uploadImage } = require('../controller/uploadController');
+const { getAllTestDrives, getTestDriveById, deleteTestDriveById, countTestDrives } = require('../controller/TestDrive');
 
 const storage = multer.diskStorage({
   destination : function(req,res,cd){
@@ -52,4 +53,18 @@ router.get('/getAllInquiry',getAllInquiry);
 
 // Count Inquiry
 router.get('/countInquiry',countInquiry);
+
+// Fetch all Test Drive Data
+router.get('/AllTestDrive',getAllTestDrives);
+
+// Show Specific TestDrive Details
+router.get('/ShowTestDrive/:id',getTestDriveById);
+
+// Delete Any Test Drive
+router.get('/DeleteTest/:id',deleteTestDriveById);
+
+// Count all Test Drive
+router.get('/count', countTestDrives);
+
+
 module.exports = router;
