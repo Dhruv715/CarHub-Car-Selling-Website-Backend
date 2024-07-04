@@ -304,3 +304,24 @@ exports.getAllInquiry = async (req, res) => {
         res.status(500).json({ error: 'Error fetching user data' });
     }
 };
+
+
+exports.getData = async (req,res)=>{
+    const token = req.headers.auth;
+        if (!token) {
+            return res.status(401).json({
+                status: 'Failed',
+                message: 'Authorization token not provided',
+            });
+        }
+
+    const decoded = jwt.verify(token, 'token'); 
+    console.log(decoded)
+    const userId = decoded; 
+    var Data = await Admin.findById(userId)
+    res.status(200).json({
+        status : 'Success',
+        message : 'Fetch Data Successfully',
+        Data
+    })
+}

@@ -1,5 +1,5 @@
 var express = require('express');
-const { newAdmin, loginAdmin, addnewCar, modifyCarData, DeleteCar, fetchAllCarsAdmin, getDataAdmin, countCars, countUsers, getAllUsers, getAllInquiry, countInquiry } = require('../controller/Admin');
+const { newAdmin, loginAdmin, addnewCar, modifyCarData, DeleteCar, fetchAllCarsAdmin, getDataAdmin, countCars, countUsers, getAllUsers, getAllInquiry, countInquiry, getData } = require('../controller/Admin');
 var router = express.Router();
 
 var multer = require('multer');
@@ -65,5 +65,8 @@ router.delete('/DeleteTest/:id',deleteTestDriveById);
 
 // Count all Test Drive
 router.get('/count', countTestDrives);
+
+// Admin Details
+router.get('/getData',getData);
 
 module.exports = router;
