@@ -6,7 +6,7 @@ var logger = require('morgan');
 
 var indexRouter = require('./routes/index');
 var usersRouter = require('./routes/users');
-
+var AdminRouter = require('./routes/Admin');
 var app = express();
 
 // view engine setup
@@ -32,7 +32,7 @@ app.use(cors());
 // app.use(cors({ origin: ['http://localhost:3000', 'http://localhost:3001', 'http://localhost:3002', 'http://localhost:3003'] })); 
 app.use('/', indexRouter);
 app.use('/user', usersRouter);
-
+app.use('/Admin',AdminRouter);
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
   next(createError(404));

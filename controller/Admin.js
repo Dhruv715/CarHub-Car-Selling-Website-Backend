@@ -4,6 +4,7 @@ const jwt = require('jsonwebtoken');
 const CarData = require('../model/CarData');
 const User = require('../model/User');
 const Inquiry = require('../model/Inquiry');
+
 exports.newAdmin = async (req,res) =>{
     try {
         const CheckEmail = await Admin.findOne({email  : req.body.email});
@@ -11,7 +12,6 @@ exports.newAdmin = async (req,res) =>{
             throw new Error('Email Already Exist');
         }
         else {
-
             if (req.file) {
                 req.body.profileImage = req.file.originalname;
             }
@@ -19,7 +19,7 @@ exports.newAdmin = async (req,res) =>{
             var Data = await Admin.create(req.body)
             res.status(200).json({
                 status : 'Success',
-                message : 'New Admin Add Successfully',
+                message : ' New Admin Add Successfully',
                 Data
             })
         }
