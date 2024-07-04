@@ -61,7 +61,7 @@ router.get('/AllTestDrive',getAllTestDrives);
 router.get('/ShowTestDrive/:id',getTestDriveById);
 
 // Delete Any Test Drive
-router.get('/DeleteTest/:id',deleteTestDriveById);
+router.delete('/DeleteTest/:id',deleteTestDriveById);
 
 // Count all Test Drive
 router.get('/count', countTestDrives);

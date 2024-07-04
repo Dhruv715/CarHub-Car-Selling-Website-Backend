@@ -506,3 +506,51 @@ exports.addInquiry = async (req, res) => {
     res.status(500).json({ status: 'Error', message: 'Failed to add inquiry' });
   }
 };
+
+
+exports.ChangePwdUser = async (req, res) => {
+  try {
+    const token = req.headers.auth;
+    const { currentPassword, newPassword } = req.body;
+
+    if (!token) {
+      return res.status(401).json({
+        status: 'Failed',
+        message: 'Authorization token not provided',
+      });
+    }
+
+    const decoded = jwt.verify(token, 'token'); 
+    const user = await User.findById(decoded);
+
+    if (!user) {
+      return res.status(404).json({
+        status: 'Failed',
+        message: 'User not found',
+      });
+    }
+
+    const isMatch = await bcrypt.compare(currentPassword, user.password);
+    if (!isMatch) {
+      return res.status(400).json({
+        status: 'Failed',
+        message: 'Current password is incorrect',
+      });
+    }
+
+    const hashedPassword = await bcrypt.hash(newPassword, 12);
+    user.password = hashedPassword;
+    await user.save();
+
+    res.status(200).json({
+      status: 'Success',
+      message: 'Password changed successfully',
+    });
+  } catch (error) {
+    res.status(500).json({
+      status: 'Failed',
+      message: 'Internal server error',
+      error: error.message,
+    });
+  }
+};
